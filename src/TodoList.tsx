@@ -1,9 +1,16 @@
+import { title } from "process";
 import React from "react";
-function TodoList() {
+type TodoListProps = {
+  title: string;
+  task1: string;
+  task2: string;
+  task3: string;
+};
+function TodoList(props: TodoListProps) {
   return (
     <div>
       <div className="head">
-        <h3>What to learn</h3>
+        <h3>{props.title}</h3>
       </div>
       <input type="text" />
       <button>+</button>
@@ -12,15 +19,15 @@ function TodoList() {
           <ul>
             <li>
               <input type="checkbox" />
-              <span>Dimon</span>
+              <span>{props.task1}</span>
             </li>
             <li>
               <input type="checkbox" />
-              <span>You have to do</span>
+              <span>{props.task2}</span>
             </li>
             <li>
               <input type="checkbox" />
-              <span>Your homework</span>
+              <span>{props.task3}</span>
             </li>
           </ul>
         </div>
