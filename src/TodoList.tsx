@@ -1,42 +1,33 @@
 import { title } from "process";
 import React from "react";
+import Header from "./Header/Header";
+import List from "./Lists/List";
+import Button from "./Buttons/Button";
+//
 type TodoListProps = {
   title: string;
-  task1: string;
-  task2: string;
-  task3: string;
+  arrayData: Array<any>;
+  checkboxHandler: (id: number) => void;
 };
+/*на строках выше резмещены все импорты, типизация всех данных, приходящих
+ из пропсов, и обьявлена компонента (функция), принимающая пропсы.*/
 function TodoList(props: TodoListProps) {
   return (
     <div>
-      <div className="head">
-        <h3>{props.title}</h3>
-      </div>
-      <input type="text" />
-      <button>+</button>
-      <div className="body">
-        <div className="list">
-          <ul>
-            <li>
-              <input type="checkbox" />
-              <span>{props.task1}</span>
-            </li>
-            <li>
-              <input type="checkbox" />
-              <span>{props.task2}</span>
-            </li>
-            <li>
-              <input type="checkbox" />
-              <span>{props.task3}</span>
-            </li>
-          </ul>
-        </div>
-        <div className="footer">
-          <button>All</button>
-          <button>Active</button>
-          <button>Completed</button>
-        </div>
-      </div>
+      <Header title={props.title} />
+      {props.arrayData.map((el: any) => {
+        return (
+          <List
+            checkboxHandler={props.checkboxHandler}
+            task={el.text}
+            isChecked={el.isChecked}
+            id={el.id}
+          />
+        );
+      })}
+      <Button button="All" />
+      <Button button="Active" />
+      <Button button="Completed" />
     </div>
   );
 }
